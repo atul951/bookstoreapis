@@ -10,7 +10,7 @@ module.exports = router;
 
 
 // api for adding a new book
-router.post('/book/addBook',upload.single('documentPath') ,function(req, res) {
+router.post('/book',upload.single('documentPath') ,function(req, res) {
     
     //Get form values
     var isbn = req.body.isbn && req.body.isbn.trim();
@@ -49,28 +49,15 @@ router.post('/book/addBook',upload.single('documentPath') ,function(req, res) {
 
 
 // api for getting all books
-router.get('/book/allBooks', (req, res)=>{
+router.get('/book', (req, res)=>{
     book.find({}, (err, result) => {
         if(err) throw err;
         res.send(result);
     });
 });
 
-
-//api for the rename of tag of books by use of _id feild
-router.get("/book/edit/:id", (req, res) => {
-    book.findOne({_id: req.params.id}, (err, book) => {
-        if(err) throw err;
-        res.render("edit", {
-            title: "Edit Page",
-            book: book
-        });
-    });
-});
-
-
 //api for the data to be updated by use of _id feild
-router.post("/book/update/:id", upload.single('documentPath'), (req, res) => {
+router.patch("/book/:id", upload.single('documentPath'), (req, res) => {
         //Get form values
     var isbn = req.body.isbn && req.body.isbn.trim();
     var name = req.body.name && req.body.name.trim();
@@ -115,7 +102,7 @@ router.post("/book/update/:id", upload.single('documentPath'), (req, res) => {
 });
 
 //api for delete book { delete by _id }
-router.get("/book/delete/:id", (req, res) => {
+router.delete("/book/:id", (req, res) => {
     book.remove({_id: req.params.id}, (err) => {
         if(err) throw err;
        // console.log();
@@ -124,22 +111,8 @@ router.get("/book/delete/:id", (req, res) => {
 });
 
 //api for search via name of book
-router.get("/book/search/name=:id", (req, res) => {
+router.get("/book/:id", (req, res) => {
     book.find({name: req.params.id}).exec( (err, book) => {
-        res.send(book);
-    });
-});
-
-//api for search via isbn no.
-router.get("/book/search/isbn=:id", (req, res) => {
-    book.find({isbn: req.params.id}).exec( (err, book) => {
-        res.send(book);
-    });
-});
-
-//api for search via author anme
-router.get("/book/search/authName=:id", (req, res) => {
-    book.find({authName: req.params.id}).exec( (err, book) => {
         res.send(book);
     });
 });
