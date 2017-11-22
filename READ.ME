@@ -1,0 +1,35 @@
+// Apis Handling bookstore
+
+Frameworks -> express.js.
+
+Database -> MongoDB
+
+view engine -> jade
+
+prerequisites software { npm , node.js }
+
+database scheam:
+
+var bookSchema = mongoose.Schema({
+	isbn: String,
+	name: String,
+	authName: String,
+	date: String,
+	price: String,
+	documentPath: {
+		type: String,
+		required: true,
+		trim: true
+	}
+});
+
+//Folling apis are there
+
+1)	/book/addBook - Adding a new book through a form feilds are { isbn, name, authName, date, price, documentPath}
+2)	/book/allBooks - Show all the books inside database.
+3)	/book/edit/:id - open the edit page for the follwing :id [:id refers to the _id in collection]
+4)	/book/update/:id - update a book in database.
+5)	/book/delete/:id - delete book of the following :id [:id refers to the _id in collection]
+6)	/book/search/name=:id - search book for the given :id(String)
+7)	/book/search/isbn=:id - search book for the given :id(String)
+8)	/book/search/authName=:id - search book for the given :id(String)

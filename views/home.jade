@@ -1,0 +1,30 @@
+doctype html
+html(lang='en')
+	head
+		h1 Welcome to BookStore
+		p Add Book using below form
+		title Home
+	link(rel='stylesheet', href='/css/bootstrap.min.css')
+	link(rel='stylesheet', href='/css/style.css')  
+	body
+		form(method='post',action='/book/addBook',enctype='multipart/form-data')
+			.form-group
+				lable ISBN :
+				input.form-control(name='isbn', type='text',placeholder='xxxx')
+			.form-group
+				lable Name of Book :
+				input.form-control(name='name', type='text',placeholder='Book')
+			.form-group
+				lable Author Name :
+				input.form-control(name='authName', type='text',placeholder='Mr. X')
+			.form-group
+				lable Date :
+				input.form-control(name='date', type='text',placeholder='dd-mm-yyyy')
+			.form-group
+				lable Price :
+				input.form-control(name='price', type='text',placeholder='$xxx')
+			.form-group
+				lable Upload Book :
+				input.form-control(name='doc', type='file')
+			input.btn.btn-primary(name='submit',type="submit",value='ADD BOOK') 	
+						
